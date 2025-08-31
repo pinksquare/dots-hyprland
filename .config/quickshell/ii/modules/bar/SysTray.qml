@@ -4,6 +4,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
+import "./weather"
+import qs.services
 
 Item {
     id: root
@@ -96,8 +98,31 @@ Item {
 
         }
 
+      Loader {
+        Layout.alignment: Qt.AlignVCenter
+                            active: HyprlandXkb.layoutCodes.length > 1
+                            visible: active
+                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+                            sourceComponent: StyledText {
+                                text: HyprlandXkb.currentLayoutCode
+                                font.pixelSize: Appearance.font.pixelSize.larger
+                                color: rightSidebarButton.colText
+                                verticalAlignment: Text.AlignVCenter 
+                            }
+                          }
+
+                    Loader {
+                    Layout.leftMargin: 40
+                    Layout.fillWidth: true
+                    active: Config.options.bar.weather.enable
+                    sourceComponent: WeatherBar {}
+                    }
+
+
         StyledText {
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+            Layout.leftMargin: -140          
+            Layout.alignment: Qt.AlignHCenter
+            //Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
             font.pixelSize: Appearance.font.pixelSize.larger
             color: Appearance.colors.colSubtext
             text: "•"
