@@ -1,5 +1,6 @@
 import qs.modules.common
 import qs
+import qs.services
 import qs.modules.common.widgets
 import "./calendar_layout.js" as CalendarLayout
 import QtQuick
@@ -52,6 +53,14 @@ Item {
                 tooltipText: (monthShift === 0) ? "" : Translation.tr("Jump to current month")
                 onClicked: {
                     monthShift = 0;
+                }
+            }
+            CalendarHeaderButton {
+                clip: true
+                buttonText: `${DateTime.time}`
+                tooltipText: ("Time")
+                onClicked: {
+                  monthShift = 0;
                 }
             }
             Item {
