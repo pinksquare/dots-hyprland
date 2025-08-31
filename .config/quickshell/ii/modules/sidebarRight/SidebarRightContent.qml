@@ -3,6 +3,7 @@ import qs.services
 import qs.modules.common
 import qs.modules.common.widgets
 import "./quickToggles/"
+import "../bar/"
 import "./wifiNetworks/"
 import "./bluetoothDevices/"
 import QtQuick
@@ -141,6 +142,13 @@ Item {
                 EasyEffectsToggle {}
                 CloudflareWarp {}
             }
+
+                SysTray {
+                Layout.leftMargin: -170 
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: false
+                Layout.fillHeight: false
+                          }
 
             CenterWidgetGroup {
                 Layout.alignment: Qt.AlignHCenter
