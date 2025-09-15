@@ -29,47 +29,6 @@ Item {
         rowSpacing: 6
         columnSpacing: 15
 
-        RippleButton {
-            id: trayOverflowButton
-            visible: root.unpinnedItems.length > 0
-            toggled: root.trayOverflowOpen
-            property bool containsMouse: hovered
-
-            onClicked: root.trayOverflowOpen = !root.trayOverflowOpen
-
-            Layout.fillHeight: !root.vertical
-            Layout.fillWidth: root.vertical
-            background.implicitWidth: 24
-            background.implicitHeight: 24
-            background.anchors.centerIn: this
-            colBackgroundToggled: Appearance.colors.colSecondaryContainer
-            colBackgroundToggledHover: Appearance.colors.colSecondaryContainerHover
-            colRippleToggled: Appearance.colors.colSecondaryContainerActive
-
-            contentItem: MaterialSymbol {
-                anchors.centerIn: parent
-                iconSize: Appearance.font.pixelSize.larger
-                text: "expand_more"
-                horizontalAlignment: Text.AlignHCenter
-                color: root.trayOverflowOpen ? Appearance.colors.colOnSecondaryContainer : Appearance.colors.colOnLayer2
-                rotation: (root.trayOverflowOpen ? 180 : 0) - (90 * root.vertical) + (180 * root.invertSide)
-                Behavior on rotation {
-                    animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                }
-            }
-
-            StyledPopup {
-                hoverTarget: trayOverflowButton
-                active: root.trayOverflowOpen
-                popupBackgroundMargin: 300 // This should be plenty... makes sure tooltips don't get cutoff (easily)
-                
-                GridLayout {
-                    id: trayOverflowLayout
-                    anchors.centerIn: parent
-                    columns: Math.ceil(Math.sqrt(root.unpinnedItems.length))
-                    columnSpacing: 10
-                    rowSpacing: 10
-
                     Repeater {
                         model: root.unpinnedItems
 
@@ -102,27 +61,27 @@ Item {
         Layout.alignment: Qt.AlignVCenter
                             active: HyprlandXkb.layoutCodes.length > 1
                             visible: active
-                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+                            //Layout.rightMargin: indicatorsRowLayout.realSpacing
                             sourceComponent: StyledText {
                                 text: HyprlandXkb.currentLayoutCode
                                 font.pixelSize: Appearance.font.pixelSize.larger
                                 color: rightSidebarButton.colText
-                                verticalAlignment: Text.AlignVCenter 
+                                //verticalAlignment: Text.AlignVCenter 
                             }
                           }
 
                     Loader {
-                    Layout.leftMargin: 40
-                    Layout.fillWidth: true
+                    //Layout.leftMargin: 5
+                    //Layout.fillWidth: true
                     active: Config.options.bar.weather.enable
                     sourceComponent: WeatherBar {}
                     }
 
 
         StyledText {
-            Layout.leftMargin: -140          
-            Layout.alignment: Qt.AlignHCenter
-            //Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+            Layout.leftMargin: -180          
+            //Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
             font.pixelSize: Appearance.font.pixelSize.larger
             color: Appearance.colors.colSubtext
             text: "•"
