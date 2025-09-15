@@ -144,7 +144,7 @@ Item {
             }
 
                 SysTray {
-                Layout.leftMargin: -170 
+                //Layout.leftMargin: -170 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: false
                 Layout.fillHeight: false
